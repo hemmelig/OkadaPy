@@ -1,0 +1,71 @@
+[build-system]
+# Minimum requirements for the build system to execute.
+# see PEP518: https://www.python.org/dev/peps/pep-0518/
+requires = [
+    "numpy",
+    "setuptools >= 61.0.0",
+    "wheel",
+    ]
+build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel.macos]
+before-all = [
+    "conda install -c conda-forge llvm-openmp"
+]
+
+[tool.setuptools.packages.find]
+include = ["okada*"]
+
+[project]
+name = "okada"
+version = "0.0.1"
+description = "A Python toolkit for evaluating analytical deformation models"
+readme = "README.md"
+license = {text = "GPLv3"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Conor A. Bacon", email = "cbacon@ldeo.columbia.edu"},
+]
+maintainers = [
+    {name = "Conor A. Bacon", email = "cbacon@ldeo.columbia.edu"},
+]
+keywords = [
+    "array",
+    "okada",
+    "deformation",
+    "geodesy",
+    "modelling",
+    "processing",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Natural Language :: English",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pygmt",
+    "pyproj",
+]
+
+[project.scripts]
+okada = "okada.cli:main"
+
+[project.optional-dependencies]
+dev = ["ipython", "pre-commit", "ruff", "coverage"]
+docs = ["doc-utils<0.17", "mock", "Sphinx >= 4.3.0", "sphinx_rtd_theme>=0.5.1"]
+
+[project.urls]
+GitHub = "https://github.com/hemmelig/OkadaPy"
+Issues = "https://github.com/hemmelig/OkadaPy/issues"
+
+[tool.ruff]
+line-length = 88

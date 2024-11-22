@@ -1,0 +1,3 @@
+LIBRARY okadalib.pyd
+EXPORTS
+    evaluate_okada_model
