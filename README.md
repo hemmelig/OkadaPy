@@ -1,7 +1,7 @@
 <p align="center">
   <!-- DOI -->
-  <a href="https://doi.org/10.5281/zenodo.">
-    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo..svg" />
+  <a href="https://doi.org/10.5281/zenodo.14257565">
+    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.14257565.svg" />
   </a>
   <!-- ReadTheDocs -->
   <a href="https://okadapy.readthedocs.io/en/latest">
@@ -15,10 +15,6 @@
 
 <p align="center">
   <a href="https://okadapy.readthedocs.io/en/latest/index.html">OkadaPy</a> is a cross-platform Python package for the analytical computation of displacement, strain, and stress fields.</a>.
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hemmelig/OkadaPy/main/docs/img/OkadaPyLogo.png" width="80%" />
 </p>
 
 Key features
@@ -61,7 +57,7 @@ Citation
 --------
 If you use OkadaPy in your work, please cite the following:
 
-OkadaPy Developers (2024). OkadaPy: v0.0.1 (v0.0.1). Zenodo. https://doi.org/10.5281/zenodo.
+OkadaPy Developers (2024). OkadaPy: v0.0.1 (v0.0.1). Zenodo. https://doi.org/10.5281/zenodo.14257565
 
 Toda, S., Stein, R. S., Sevilgen, V., & Lin, J. (2011). Coulomb 3.3 Graphic-rich deformation and stress-change software for earthquake, tectonic, and volcano research and teaching—user guide. US Geological Survey open-file report, 1060(2011), 63.
 
