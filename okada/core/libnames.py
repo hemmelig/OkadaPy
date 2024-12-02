@@ -9,8 +9,8 @@ Utility module for loading compiled C libraries.
 
 """
 
+import sysconfig
 from ctypes import CDLL
-from distutils import sysconfig
 from pathlib import Path
 
 

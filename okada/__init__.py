@@ -9,8 +9,11 @@ OkadaPy—a Python toolkit for evaluating analytical deformation models.
 
 """
 
+import pkg_resources
+
 from .model import Model, read as read_model
 from .core import evaluate_okada_model as evaluate
 
 
-__all__ = [evaluate, read_model]
+__all__ = [evaluate, read_model, Model]
+__version__ = pkg_resources.get_distribution("okada").version
