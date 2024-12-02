@@ -57,7 +57,7 @@ def _plot_mpl(
                 "No coordinate transformation specified, plotting in Cartesian space."
             )
         else:
-            Y, X = model.grid_coords
+            X, Y = model.grid_coords
 
     # Plot vertical displacement as colormap
     levels = MaxNLocator(nbins=100).tick_values(
@@ -149,7 +149,7 @@ def _plot_pygmt(
         sys.exit(1)
 
     region = model.grid_bounds_coords
-    grid_lats, grid_lons = model.grid_coords
+    grid_lons, grid_lats = model.grid_coords
     displacement_field_grd = pygmt.xyz2grd(
         x=grid_lons.flatten(),
         y=grid_lats.flatten(),

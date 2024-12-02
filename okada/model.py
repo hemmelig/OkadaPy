@@ -28,7 +28,6 @@ class Model:
     poisson_ratio: float
     youngs_modulus: float
     friction_coefficient: float
-    raw_elements: list[float]
     elements: list
     x_coords: np.ndarray
     y_coords: np.ndarray
@@ -50,7 +49,7 @@ class Model:
     def grid_bounds_coords(self) -> list[tuple[float], tuple[float]]:
         """Get lat/lon coordinate bounds for the model grid."""
 
-        (min_lat, min_lon), (max_lat, max_lon) = [
+        (min_lon, min_lat), (max_lon, max_lat) = [
             self.transformer.transform(
                 x * 1000, y * 1000, direction=TransformDirection.INVERSE
             )
@@ -78,13 +77,23 @@ class Model:
             return
 
         grid_x, grid_y = self.grid_xy
-        grid_lats, grid_lons = self.transformer.transform(
+        grid_lons, grid_lats = self.transformer.transform(
             grid_x * 1000,
             grid_y * 1000,
             direction=TransformDirection.INVERSE,
         )
 
-        return grid_lats, grid_lons
+        return grid_lons, grid_lats
+
+    @property
+    def raw_elements(self) -> np.ndarray:
+        """
+        Prepare all model elements for computation, which assumes parameters have
+        specific positions in a flattened, contiguous array.
+
+        """
+
+        return np.asarray([element.raw_input for element in self.elements]).flatten()
 
 
 def read(model_file: str, file_format: str = None) -> Model:
@@ -163,9 +172,7 @@ def _read_coulomb(model_file: pathlib.Path) -> Model:
         .drop(columns=0)
         .values.astype(np.float64)
     )
-
     elements = [coulomb2okadapy(element) for element in raw_elements]
-    raw_elements = raw_elements.flatten()
 
     # Parse grid information from model file tail
     grid, size, xsection, map_ = tail[:7], tail[7:11], tail[11:19], tail[19:]
@@ -194,7 +201,6 @@ def _read_coulomb(model_file: pathlib.Path) -> Model:
         poisson_ratio,
         youngs_modulus,
         friction_coefficient,
-        raw_elements,
         elements,
         x_coords.flatten(),
         y_coords.flatten(),

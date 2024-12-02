@@ -10,16 +10,15 @@ Plot a given component of the strain tensor field for a given deformation model.
 """
 
 import pathlib
-import sys
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import numpy as np
 import pandas as pd
 import pygmt
-from pyproj.enums import TransformDirection
 
 from okada import Model
+from okada.results import StrainResult
 
 
 STRAIN_COMPONENT_MAP = {
@@ -44,7 +43,7 @@ def plot(*args, **kwargs) -> plt.Axes | pygmt.Figure | None:
 
 def _plot_mpl(
     model: Model,
-    strain,
+    strain_result: StrainResult,
     strain_component: str,
     ax: plt.Axes | None = None,
     save: bool = False,
@@ -68,8 +67,9 @@ def _plot_mpl(
                 "No coordinate transformation specified, plotting in Cartesian space."
             )
         else:
-            Y, X = model.grid_coords
+            X, Y = model.grid_coords
 
+    strain = strain_result.strain
     if strain_component == "DIL":
         strain_to_plot = (strain[:, :, 0] + strain[:, :, 1] + strain[:, :, 2]) * 1e6
     else:
@@ -115,7 +115,7 @@ def _plot_mpl(
         aspect = (y_extent * lon_extent) / (x_extent * lat_extent)
         ax.set_aspect(aspect=aspect)
 
-    fig.colorbar(cf, ax=ax, shrink=0.5)
+    # fig.colorbar(cf, ax=ax, shrink=0.5)
 
     if xy_files is not None:
         for xy_file in xy_files:
@@ -128,7 +128,7 @@ def _plot_mpl(
             )
             if coordinate_space == "cartesian" and transformer is not None:
                 x, y = (
-                    transformer.transform(xy_file["Latitude"], xy_file["Longitude"])
+                    transformer.transform(xy_file["Longitude"], xy_file["Latitude"])
                     / 1000
                 )
             elif coordinate_space == "geographic":
@@ -141,7 +141,7 @@ def _plot_mpl(
     if save:
         plt.savefig(outfile)
 
-    return ax
+    return cf, ax
 
 
 def _plot_pygmt(

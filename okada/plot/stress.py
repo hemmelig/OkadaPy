@@ -10,14 +10,10 @@ Plot a given component of the strain tensor field for a given deformation model.
 """
 
 import pathlib
-import sys
 
 import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
 import numpy as np
-import pandas as pd
 import pygmt
-from pyproj.enums import TransformDirection
 
 from okada import Model
 from okada.results import StressResult
@@ -98,8 +94,7 @@ def plot_stress_vectors(
                 "No coordinate transformation specified, plotting in Cartesian space."
             )
         else:
-            Y, X = model.grid_coords
-            print(Y, X)
+            X, Y = model.grid_coords
 
     if coordinate_space == "cartesian":
         ax.set_aspect("equal")
@@ -119,7 +114,7 @@ def plot_stress_vectors(
 
     normalized_magnitudes = max_magnitudes / np.max(max_magnitudes)
 
-    Q = plt.quiver(
+    Q = ax.quiver(
         X,
         Y,
         [d[0] for d in max_directions],
@@ -129,9 +124,4 @@ def plot_stress_vectors(
         scale=10,
     )
 
-    fig.colorbar(Q, label="Normalized Max Horizontal Stress")
-    plt.title("Maximum Horizontal Stress Directions")
-    plt.xlabel("X")
-    plt.ylabel("Y")
-
-    plt.savefig("stress_map.png", dpi=400)
+    return Q, ax
