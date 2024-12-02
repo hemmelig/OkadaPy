@@ -1,0 +1,35 @@
+
+
+# Please use the following guidelines to format your commit messages:
+#
+#    <type>: <subject>
+#    <BLANK LINE>
+#    <body>
+#    <BLANK LINE>
+#    <footer>
+#
+# Please note that:
+#  - HEADER: a single line of max. 50 characters that contains a succinct
+#            description of the change. It contains type, an optional scope,
+#            and a subject
+#      + <type> describes the kind of change that this commit is providing.
+#               Allowed types are:
+#                 * feat or :atom: (feature)
+#                 * fix or :bug: (bug fix)
+#                 * docs or :bookmark_tabs: (documentation)
+#                 * style or :bookmark_tabs: (formatting, missing semicolons, ...)
+#                 * refactor or :wrench:
+#                 * test or :test_tube: (when adding missing tests)
+#                 * chore or :wrench: (maintain)
+#      + <subject> a very short description of the change.
+#                  Use the following format:
+#                    * imperative, present tense: "change" not
+#                      "changed"/"changes"
+#                    * no capitalised first letter
+#                    * no dot (.) at the end
+#
+#  - BODY: describe the motivation for the change and contrast it with previous
+#          behaviour. Use imperative present tense
+#
+#  - FOOTER: information about Breaking Changes and also a place to reference
+#            GitHub issues that this commit closes

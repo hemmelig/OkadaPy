@@ -2,3 +2,6 @@
 .DS_Store
 *.egg-info/
 build/
+__pycache__/
+input_files/
+scripts/
