@@ -1,3 +1,5 @@
-LIBRARY okadalib.pyd
+LIBRARY libokada.pyd
 EXPORTS
-    evaluate_okada_model
+    compute_okada_displacement
+    compute_okada_strain
+    compute_okada_stress

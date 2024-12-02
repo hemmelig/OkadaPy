@@ -46,12 +46,13 @@ void compute_okada_stress(
     int threads
 )
 {
+    int i;
 
     double alpha = 1. / (2. * (1. - poisson));
     calculation_depth *= -1.;
 
     #pragma omp parallel for num_threads(threads)
-    for (int i = 0; i < n_coords; i++)
+    for (i = 0; i < n_coords; i++)
     {
         // === Variable declarations ===
         double *model_element, *u, *du, *ui, *s, *si;
@@ -233,12 +234,13 @@ void compute_okada_strain(
     int threads
 )
 {
+    int i;
 
     double alpha = 1. / (2. * (1. - poisson));
     calculation_depth *= -1.;
 
     #pragma omp parallel for num_threads(threads)
-    for (int i = 0; i < n_coords; i++)
+    for (i = 0; i < n_coords; i++)
     {
         // === Variable declarations ===
         double *model_element, *u, *du, *ui, *e, *ei;//, *ei_transformed;
@@ -416,12 +418,13 @@ void compute_okada_displacement(
     int threads
 )
 {
+    int i;
 
     double alpha = 1. / (2. * (1. - poisson));
     calculation_depth *= -1.;
 
     #pragma omp parallel for num_threads(threads)
-    for (int i = 0; i < n_coords; i++)
+    for (i = 0; i < n_coords; i++)
     {
         // === Variable declarations ===
         double *model_element, *u, *du, *ui, *s, *si, *sit;

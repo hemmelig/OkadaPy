@@ -60,7 +60,7 @@ if IS_MSVC:
 
 def export_symbols(path):
     """
-    Required for Windows systems - functions defined in okadalib.def.
+    Required for Windows systems - functions defined in libokada.def.
     """
     with (SETUP_DIRECTORY / path).open("r") as f:
         lines = f.readlines()[2:]
@@ -104,7 +104,7 @@ def get_extensions():
     extra_link_args = []
     if IS_MSVC:
         extra_compile_args = ["/openmp", "/TP", "/O2"]
-        extension_args["export_symbols"] = export_symbols("okada/core/src/okadalib.def")
+        extension_args["export_symbols"] = export_symbols("okada/core/src/libokada.def")
         extension_args["library_dirs"].extend(
             [
                 str(pathlib.Path.cwd() / "okada" / "core"),
@@ -125,7 +125,7 @@ def get_extensions():
     extension_args["extra_compile_args"] = extra_compile_args
 
     extensions.extend(
-        [Extension("okada.core.src.okadalib", sources=sources, **extension_args)]
+        [Extension("okada.core.src.libokada", sources=sources, **extension_args)]
     )
 
     return extensions

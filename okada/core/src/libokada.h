@@ -201,3 +201,42 @@ void compute_frs_deformation(
     double tensile_dislocation,
     double *u
 );
+
+void compute_okada_displacement(
+    double *x_coords,
+    double *y_coords,
+    int n_coords,
+    double *model_elements,
+    int n_elements,
+    double youngs_mod,
+    double poisson,
+    double calculation_depth,
+    double *resultant_displacement,
+    int threads
+);
+
+void compute_okada_strain(
+    double *x_coords,
+    double *y_coords,
+    int n_coords,
+    double *model_elements,
+    int n_elements,
+    double youngs_mod,
+    double poisson,
+    double calculation_depth,
+    double *resultant_strain_tensor,
+    int threads
+);
+
+void compute_okada_stress(
+    double *x_coords,
+    double *y_coords,
+    int n_coords,
+    double *model_elements,
+    int n_elements,
+    double youngs_mod,
+    double poisson,
+    double calculation_depth,
+    double *resultant_stress_tensor,
+    int threads
+);

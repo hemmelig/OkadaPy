@@ -22,7 +22,7 @@ from okada.results import DisplacementResult, Result, StrainResult, StressResult
 from okada.utils import timeit
 
 
-okadalib = _load_cdll("okadalib")
+libokada = _load_cdll("libokada")
 
 c_int32 = clib.ctypes.c_int32
 c_dbl = clib.ctypes.c_double
@@ -49,7 +49,7 @@ def evaluate_okada_model(
     return result
 
 
-okadalib.compute_okada_displacement.argtypes = [
+libokada.compute_okada_displacement.argtypes = [
     c_dPt,
     c_dPt,
     c_int32,
@@ -75,7 +75,7 @@ def _evaluate_displacement(
     displacement = np.zeros(n_coords * 12, dtype=np.float64, order="C")
     displacement = np.ascontiguousarray(displacement)
 
-    okadalib.compute_okada_displacement(
+    libokada.compute_okada_displacement(
         model.x_coords,
         model.y_coords,
         c_int32(n_coords),
@@ -97,7 +97,7 @@ def _evaluate_displacement(
     return DisplacementResult(**kwargs)
 
 
-okadalib.compute_okada_strain.argtypes = [
+libokada.compute_okada_strain.argtypes = [
     c_dPt,
     c_dPt,
     c_int32,
@@ -125,7 +125,7 @@ def _evaluate_strain(
     strain = np.zeros(n_coords * 6, dtype=np.float64, order="C")
     strain = np.ascontiguousarray(strain)
 
-    okadalib.compute_okada_strain(
+    libokada.compute_okada_strain(
         model.x_coords,
         model.y_coords,
         c_int32(n_coords),
@@ -147,7 +147,7 @@ def _evaluate_strain(
     return StrainResult(**kwargs)
 
 
-okadalib.compute_okada_stress.argtypes = [
+libokada.compute_okada_stress.argtypes = [
     c_dPt,
     c_dPt,
     c_int32,
@@ -175,7 +175,7 @@ def _evaluate_stress(
     stress = np.zeros(n_coords * 6, dtype=np.float64, order="C")
     stress = np.ascontiguousarray(stress)
 
-    okadalib.compute_okada_stress(
+    libokada.compute_okada_stress(
         model.x_coords,
         model.y_coords,
         c_int32(n_coords),
