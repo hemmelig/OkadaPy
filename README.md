@@ -7,6 +7,18 @@
   <a href="https://okadapy.readthedocs.io/en/latest">
     <img src="https://readthedocs.org/projects/okadapy/badge/?version=latest" />
   </a>
+  <!-- Build Action -->
+  <a href="https://github.com/hemmelig/OkadaPy/actions">
+    <img src="https://github.com/hemmelig/OkadaPy/actions/workflows/build_wheels.yml/badge.svg" />
+  </a>
+  <!-- PyPI -->
+  <a href="https://pypi.org/project/okada/">
+    <img src="https://img.shields.io/pypi/v/okada" />
+  </a>
+  <!-- Python version-->
+  <a href="https://www.python.org/downloads/release/python-3110/">
+    <img src="https://img.shields.io/badge/python-3.11+-blue.svg" />
+  </a>
   <!-- License -->
   <a href="https://www.gnu.org/licenses/gpl-3.0">
     <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" />
