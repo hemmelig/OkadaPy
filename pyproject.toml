@@ -61,7 +61,7 @@ okada = "okada.cli:main"
 
 [project.optional-dependencies]
 dev = ["ipython", "pre-commit", "ruff", "coverage"]
-docs = ["doc-utils<0.17", "mock", "Sphinx >= 4.3.0", "sphinx_rtd_theme>=0.5.1"]
+docs = ["doc-utils<0.17", "Sphinx >= 4.3.0", "sphinx_rtd_theme>=0.5.1"]
 
 [project.urls]
 GitHub = "https://github.com/hemmelig/OkadaPy"

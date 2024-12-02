@@ -1,0 +1,18 @@
+version: 2
+
+# Set build parameters
+build:
+  os: ubuntu-24.04
+  tools:
+    python: "3.11"
+
+# Build from the docs/ directory with Sphinx
+sphinx:
+  configuration: docs/conf.py
+
+# Explicitly set Python requirements
+python:
+  install:
+    - requirements: docs/requirements.txt
+    - method: pip
+      path: .

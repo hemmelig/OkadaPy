@@ -26,7 +26,7 @@
 </p>
 
 <p align="center">
-  <a href="https://okadapy.readthedocs.io/en/latest/index.html">OkadaPy</a> is a cross-platform Python package for the analytical computation of displacement, strain, and stress fields.</a>.
+  <a href="https://okadapy.readthedocs.io/en/latest/index.html">OkadaPy</a> is a cross-platform Python package for the analytical computation of displacement, strain, and stress fields.
 </p>
 
 Key features
@@ -43,10 +43,10 @@ Documentation for OkadaPy is hosted [here](https://okadapy.readthedocs.io/en/lat
 
 Installation
 ------------
-OkadaPy requires Python version 3.11 and above. The package will be made available through the Python Package Index (PyPI), at which time it will be possible to install via `pip`:
+OkadaPy requires Python version 3.11 and above. The package can be installed from the Python Package Index (PyPI) via `pip`:
 
 ```console
-pip install okadapy
+pip install okada
 ```
 
 Until then, it can be installed from source, providing a suitable C compiler is available:
