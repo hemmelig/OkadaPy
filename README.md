@@ -49,7 +49,7 @@ OkadaPy requires Python version 3.11 and above. The package can be installed fro
 pip install okada
 ```
 
-Until then, it can be installed from source, providing a suitable C compiler is available:
+Alternatively, OkadaPy can be installed from source, providing a suitable C compiler is available:
 
 ```console
 git clone https://github.com/hemmelig/OkadaPy
@@ -75,7 +75,7 @@ Toda, S., Stein, R. S., Sevilgen, V., & Lin, J. (2011). Coulomb 3.3 Graphic-rich
 
 Contributing to OkadaPy
 -----------------------
-Contributions to OkadaPy are welcomed. The first stop should be to reach out, either directly or—preferably—via the GitHub Issues panel, to discuss the proposed changes. Next, simply fork the OkadaPy repository, install the package with the developer options enabled (that is, using `pip install okadapy[dev]`), make your changes/add your new contribution, then make a [pull request](https://help.github.com/articles/about-pull-requests/). All contributors to OkadaPy will be listed as authors on the releases.
+Contributions to OkadaPy are welcomed. The first stop should be to reach out, either directly or—preferably—via the GitHub Issues panel, to discuss the proposed changes. Next, simply fork the OkadaPy repository, install the package with the developer options enabled (that is, using `pip install okada[dev]`), make your changes/add your new contribution, then make a [pull request](https://help.github.com/articles/about-pull-requests/). All contributors to OkadaPy will be listed as authors on the releases.
 
 Bug reports, suggestions for new features and enhancements, and even links to projects that have made use of OkadaPy are most welcome.
 
@@ -84,7 +84,7 @@ See our [contributions page](https://github.com/hemmelig/OkadaPy/blob/main/.gith
 Contact
 -------
 Any comments/questions can be directed to:
-* **Conor Bacon** - cbacon [ at ] ldeo.columbia.edu
+* **Conor Bacon** - conor.bacon [ at ] norsar.no
 
 License
 -------
