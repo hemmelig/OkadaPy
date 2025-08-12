@@ -54,27 +54,50 @@ class StressResult(Result):
 
     stress: np.ndarray
 
+    @property
+    def as_tensors(self) -> np.ndarray:
+        """Returns an array of stress tensors."""
+
+        stress_tensors = []
+        for stress_tensor in self.flatten_2d:
+            stress_tensors.append(
+                np.array(
+                    [
+                        [stress_tensor[0], stress_tensor[5], stress_tensor[4]],
+                        [stress_tensor[5], stress_tensor[1], stress_tensor[3]],
+                        [stress_tensor[4], stress_tensor[3], stress_tensor[2]],
+                    ]
+                )
+            )
+        
+        return np.asarray(stress_tensors)
+
+    @property
+    def flatten_2d(self) -> np.ndarray:
+        """Flattens the 2-D grid of stress measurements for ease of iteration."""
+
+        return self.stress.reshape[-1, self.stress.shape[-1]]
+
     def shmax_vectors(self):
         shmax_vectors = []
-        for x in self.stress:
-            for stress_tensor in x:
-                stress_tensor_2d = np.asarray(
-                    [
-                        stress_tensor[STRESS_COMPONENT_MAP["XX"]],
-                        stress_tensor[STRESS_COMPONENT_MAP["XY"]],
-                        stress_tensor[STRESS_COMPONENT_MAP["YX"]],
-                        stress_tensor[STRESS_COMPONENT_MAP["YY"]],
-                    ]
-                ).reshape(2, 2)
-                eigenvals, eigenvecs = np.linalg.eigh(stress_tensor_2d)
-                max_idx = np.argmin(eigenvals)
+        for stress_tensor in self.flatten_2d:
+            stress_tensor_2d = np.asarray(
+                [
+                    stress_tensor[STRESS_COMPONENT_MAP["XX"]],
+                    stress_tensor[STRESS_COMPONENT_MAP["XY"]],
+                    stress_tensor[STRESS_COMPONENT_MAP["YX"]],
+                    stress_tensor[STRESS_COMPONENT_MAP["YY"]],
+                ]
+            ).reshape(2, 2)
+            eigenvals, eigenvecs = np.linalg.eigh(stress_tensor_2d)
+            max_idx = np.argmin(eigenvals)
 
-                max_direction = eigenvecs[:, max_idx]
-                max_magnitude = np.min(eigenvals)
+            max_direction = eigenvecs[:, max_idx]
+            max_magnitude = np.min(eigenvals)
 
-                angle = np.arctan2(max_direction[1], max_direction[0])
+            angle = np.arctan2(max_direction[1], max_direction[0])
 
-                shmax_vectors.append((max_direction, max_magnitude, angle))
+            shmax_vectors.append((max_direction, max_magnitude, angle))
 
         return shmax_vectors
 

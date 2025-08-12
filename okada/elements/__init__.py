@@ -10,6 +10,7 @@
 
 from .planar_source import PlanarFault
 from .point_source import PointInflation, PointShear
+from .receiver_fault import ReceiverFault
 from .tensile_crack import TensileCrack
 
 
