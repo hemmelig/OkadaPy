@@ -13,10 +13,11 @@ import pathlib
 import sys
 
 import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
 import numpy as np
 import pandas as pd
+
 import pygmt
+from matplotlib.ticker import MaxNLocator
 from pyproj.enums import TransformDirection
 
 from okada import Model
@@ -98,7 +99,7 @@ def _plot_mpl(
                 names=["Longitude", "Latitude", "Z"],
                 header=None,
                 comment=">",
-                sep="\s+",
+                sep=r"\s+",
             )
             if coordinate_space == "cartesian" and transformer is not None:
                 x, y = (
@@ -110,7 +111,7 @@ def _plot_mpl(
             ax.plot(x, y, color="k")
 
     # Plot horizontal displacement as vector arrows
-    ax.quiver(X, Y, displacement[:, :, 0], displacement[:, :, 1], scale=3)
+    ax.quiver(X, Y, displacement[:, :, 0], displacement[:, :, 1], scale=100)
 
     ax.set_xlim([min(X.flatten()), max(X.flatten())])
     ax.set_ylim([min(Y.flatten()), max(Y.flatten())])

@@ -12,10 +12,10 @@ Plot a given component of the strain tensor field for a given deformation model.
 import pathlib
 
 import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
 import numpy as np
 import pandas as pd
 import pygmt
+from matplotlib.ticker import MaxNLocator
 
 from okada import Model
 from okada.results import StrainResult

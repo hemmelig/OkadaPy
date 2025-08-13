@@ -69,14 +69,14 @@ class StressResult(Result):
                     ]
                 )
             )
-        
+
         return np.asarray(stress_tensors)
 
     @property
     def flatten_2d(self) -> np.ndarray:
         """Flattens the 2-D grid of stress measurements for ease of iteration."""
 
-        return self.stress.reshape[-1, self.stress.shape[-1]]
+        return self.stress.reshape(-1, self.stress.shape[-1])
 
     def shmax_vectors(self):
         shmax_vectors = []

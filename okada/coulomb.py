@@ -24,13 +24,13 @@ def calculate_coulomb_stress(
     """
 
     # Traction vector on fault plane given by T = σ ⋅ n
-    traction = np.einsum("ijk,jk->ik", stress_tensor, fault.normal_vector)
+    traction = np.einsum("ij,j->i", stress_tensor, fault.normal_vector)
 
     # Normal stress given by σ_n = T ⋅ n
-    normal = np.einsum("ik,ik->k", traction, fault.normal_vector)
+    normal = np.dot(traction, fault.normal_vector)
 
     # Shear stress in slip direction given by τ = T ⋅ slip_vector
-    shear = np.einsum("ik,ik->k", traction, fault.slip_vector)
+    shear = np.dot(traction, fault.slip_vector)
 
     coulomb_stress = shear + friction_coefficient * normal
 

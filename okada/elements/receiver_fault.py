@@ -24,7 +24,7 @@ class ReceiverFault:
         - Strike is measured from north
         - Dip is measured DOWN from the horizontal (that is, dip angle must be positive)
         - Rake is the angle between the strike vector and the slip vector, in the slip
-          plane.
+          plane
 
     """
 
@@ -37,8 +37,8 @@ class ReceiverFault:
 
         while self.strike >= 180.0:
             self.strike -= 180.0
-            self.dip *= -1
-        
+            self.dip *= -1  # Necessary? Dip should be always positive.
+
         self.rake -= 90.0
         while self.rake <= -180.0:
             self.rake += 360.0
@@ -47,21 +47,25 @@ class ReceiverFault:
     def strike_vector(self) -> np.ndarray:
         """Compose the vector parallel to fault strike."""
 
-        return np.array([
-            np.cos(d2r(self.strike)),
-            np.sin(d2r(self.strike)),
-            0,
-        ])
+        return np.array(
+            [
+                np.cos(d2r(self.strike)),
+                np.sin(d2r(self.strike)),
+                0,
+            ]
+        )
 
     @property
     def dip_vector(self) -> np.ndarray:
         """Compose the vector parallel to the fault dip."""
 
-        return np.array([
-            np.cos(d2r(self.dip)) * np.sin(d2r(self.strike)),
-            -np.cos(d2r(self.dip)) * np.cos(d2r(self.strike)),
-            -np.sin(d2r(self.dip)),
-        ])
+        return np.array(
+            [
+                np.cos(d2r(self.dip)) * np.sin(d2r(self.strike)),
+                -np.cos(d2r(self.dip)) * np.cos(d2r(self.strike)),
+                -np.sin(d2r(self.dip)),
+            ]
+        )
 
     @property
     def normal_vector(self) -> np.ndarray:
